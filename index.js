@@ -35,7 +35,7 @@ app.post("/api/courses", (req, res) => {
   const course = {
     id: courses.length + 1,
     courseName: req.body.courseName,
-    teacher: "Okhil",
+    teacher: "Lamka",
   };
   courses.push(course);
   res.send(course);
