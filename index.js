@@ -40,7 +40,7 @@ app.post("/api/courses", (req, res) => {
   const result = schema.validate(req.body);
   console.log(result);
   if (result.error) {
-    res.status(400).send("Name required/ must be more than 3 charecters");
+    res.status(400).send(result.error.message);
     return;
   }
 
