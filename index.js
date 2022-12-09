@@ -32,10 +32,15 @@ app.get("/api/courses/:id", (req, res) => {
   res.send(course);
 });
 app.post("/api/courses", (req, res) => {
+  if (!req.body.courseName || req.body.courseName.length < 3) {
+    res.status(400).send("Name required/ must be more than 3 charecters");
+    return;
+  }
+
   const course = {
     id: courses.length + 1,
     courseName: req.body.courseName,
-    teacher: "Lamka",
+    teacher: req.body.teacher,
   };
   courses.push(course);
   res.send(course);
