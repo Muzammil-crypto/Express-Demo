@@ -33,13 +33,13 @@ app.get("/api/courses/:id", (req, res) => {
   res.send(course);
 });
 app.post("/api/courses", (req, res) => {
-  const schema = {
+  const schema = Joi.object({
     courseName: Joi.string().min(3).required(),
     teacher: Joi.string().min(2).required(),
-  };
-  const result = Joi.valid(req.body, schema);
+  });
+  const result = schema.validate(req.body);
   console.log(result);
-  if (!req.body.courseName || req.body.courseName.length < 3) {
+  if (result.error) {
     res.status(400).send("Name required/ must be more than 3 charecters");
     return;
   }
